@@ -13,7 +13,7 @@ var slapp = Slapp({
 })
 
 require('beepboop-slapp-presence-polyfill')(slapp, { debug: true })
-require('./app')(slapp, db)
+require('./app')(slapp)
 var app = slapp.attachToExpress(express())
 
 app.get('/', function (req, res) {
