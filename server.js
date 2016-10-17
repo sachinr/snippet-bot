@@ -3,6 +3,7 @@ const express = require('express')
 const Slapp = require('slapp')
 const BeepBoopConvoStore = require('slapp-convo-beepboop')
 const BeepBoopContext = require('slapp-context-beepboop')
+const db = require('beepboop-persist')()
 
 if (!process.env.PORT) throw Error('PORT missing but required')
 
@@ -13,7 +14,7 @@ var slapp = Slapp({
 })
 
 require('beepboop-slapp-presence-polyfill')(slapp, { debug: true })
-require('./app')(slapp)
+require('./app')(slapp, db)
 var app = slapp.attachToExpress(express())
 
 app.get('/', function (req, res) {
